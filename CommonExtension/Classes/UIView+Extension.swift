@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct UIRectSide: OptionSet {
     public let rawValue: Int
@@ -22,90 +23,6 @@ public struct UIRectSide: OptionSet {
 }
 
 public extension UIView{
-    // 画虚线边框
-    func drawDashLine(strokeColor: UIColor, lineWidth: CGFloat = 1, lineLength: Int = 10, lineSpacing: Int = 5, corners: UIRectSide) {
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.bounds = self.bounds
-        shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.strokeColor = strokeColor.cgColor
-        shapeLayer.lineWidth = lineWidth
-        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-
-        // 每一段虚线长度 和 每两段虚线之间的间隔
-        shapeLayer.lineDashPattern = [NSNumber(value: lineLength), NSNumber(value: lineSpacing)]
-
-        let path = CGMutablePath()
-        if corners.contains(.left) {
-
-            path.move(to: CGPoint(x: 0, y: self.layer.bounds.height))
-
-            path.addLine(to: CGPoint(x: 0, y: 0))
-
-        }
-        if corners.contains(.top){
-
-            path.move(to: CGPoint(x: 0, y: 0))
-
-            path.addLine(to: CGPoint(x: self.layer.bounds.width, y: 0))
-
-        }
-        if corners.contains(.right){
-
-            path.move(to: CGPoint(x: self.layer.bounds.width, y: 0))
-
-            path.addLine(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
-
-        }
-        if corners.contains(.bottom){
-
-            path.move(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
-
-            path.addLine(to: CGPoint(x: 0, y: self.layer.bounds.height))
-
-        }
-        shapeLayer.path = path
-        self.layer.addSublayer(shapeLayer)
-
-    }
-
-    // 画实线边框
-    func drawLine(strokeColor: UIColor, lineWidth: CGFloat = 1, corners: UIRectSide) {
-        if corners == UIRectSide.all {
-            self.layer.borderWidth = lineWidth
-            self.layer.borderColor = strokeColor.cgColor
-        } else{
-            let shapeLayer = CAShapeLayer()
-            shapeLayer.bounds = self.bounds
-            shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
-            shapeLayer.fillColor = UIColor.blue.cgColor
-            shapeLayer.strokeColor = strokeColor.cgColor
-            shapeLayer.lineWidth = lineWidth
-            shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-
-            let path = CGMutablePath()
-            if corners.contains(.left) {
-                path.move(to: CGPoint(x: 0, y: self.layer.bounds.height))
-                path.addLine(to: CGPoint(x: 0, y: 0))
-            }
-            if corners.contains(.top){
-                path.move(to: CGPoint(x: 0, y: 0))
-                path.addLine(to: CGPoint(x: self.layer.bounds.width, y: 0))
-            }
-            if corners.contains(.right){
-                path.move(to: CGPoint(x: self.layer.bounds.width, y: 0))
-                path.addLine(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
-            }
-            if corners.contains(.bottom){
-                path.move(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
-                path.addLine(to: CGPoint(x: 0, y: self.layer.bounds.height))
-            }
-            shapeLayer.path = path
-            self.layer.addSublayer(shapeLayer)
-        }
-
-    }
-
     // 使用贝塞尔曲线画圆角时UIView动画改变frame时有问题：width或者height不变，这时需要在frame改变后重新设置圆角，，，或者用常规的方式设置圆角就不会有问题了
     // 四个角都加圆角
     func addAllCorner(cornerRadius: CGFloat) {

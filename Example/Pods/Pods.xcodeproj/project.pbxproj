@@ -633,38 +633,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		03347803BE7CA855AD3E84427D057CE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2674572C5CF7F3457175F42F516F592B /* CommonExtension.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CommonExtension/CommonExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CommonExtension/CommonExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CommonExtension/CommonExtension.modulemap";
-				PRODUCT_MODULE_NAME = CommonExtension;
-				PRODUCT_NAME = CommonExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		0CF977E736A9F0297ED689DCD07C3E1C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */;
@@ -855,6 +823,69 @@
 			};
 			name = Debug;
 		};
+		9A0A6C5363C8DFBBC14FDBCB834763D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18099ED0F0F1DFA6DE09FE3B468DD2DF /* CommonExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CommonExtension/CommonExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CommonExtension/CommonExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CommonExtension/CommonExtension.modulemap";
+				PRODUCT_MODULE_NAME = CommonExtension;
+				PRODUCT_NAME = CommonExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C4F656E92295D8B681DBD84E00659B76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2674572C5CF7F3457175F42F516F592B /* CommonExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CommonExtension/CommonExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CommonExtension/CommonExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CommonExtension/CommonExtension.modulemap";
+				PRODUCT_MODULE_NAME = CommonExtension;
+				PRODUCT_NAME = CommonExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		CA7D3A8A9711B590792AFA3F104FCDEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E315184065B2759861389AC7AB152E6 /* Pods-CommonExtension_Example.release.xcconfig */;
@@ -955,37 +986,6 @@
 			};
 			name = Debug;
 		};
-		D3623AB73239C5FEF712A02E9E2B301E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18099ED0F0F1DFA6DE09FE3B468DD2DF /* CommonExtension.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CommonExtension/CommonExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CommonExtension/CommonExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CommonExtension/CommonExtension.modulemap";
-				PRODUCT_MODULE_NAME = CommonExtension;
-				PRODUCT_NAME = CommonExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F0B5620E34B98E3404230685C7341866 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 075169FA6746C6BDF0032B8A03AB2307 /* Pods-CommonExtension_Tests.debug.xcconfig */;
@@ -1043,8 +1043,8 @@
 		4F851BF528417278D8C2CD4265E457B9 /* Build configuration list for PBXNativeTarget "CommonExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D3623AB73239C5FEF712A02E9E2B301E /* Debug */,
-				03347803BE7CA855AD3E84427D057CE8 /* Release */,
+				9A0A6C5363C8DFBBC14FDBCB834763D5 /* Debug */,
+				C4F656E92295D8B681DBD84E00659B76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
