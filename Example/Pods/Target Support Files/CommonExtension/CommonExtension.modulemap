@@ -1,0 +1,6 @@
+framework module CommonExtension {
+  umbrella header "CommonExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
