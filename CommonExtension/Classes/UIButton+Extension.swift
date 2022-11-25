@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIButton {
+public extension UIButton {
     convenience init(title: String = "",
                      titleFont: UIFont = UIFont.systemFont(ofSize: 16),
                      titleColor: UIColor? = .clear,

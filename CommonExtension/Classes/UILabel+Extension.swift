@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     convenience init(font: UIFont, color: UIColor, alignment: NSTextAlignment, titleString: String = "") {
         self.init()
         self.font = font
