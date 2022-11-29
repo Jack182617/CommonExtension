@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 public extension UIImageView{
-    convenience init(image: UIImage, contentMode: UIView.ContentMode){
+    convenience init(image: UIImage, contentMode: UIView.ContentMode? = .scaleAspectFill, clipsToBounds: Bool? = false){
         self.init()
         self.image = image
-        self.contentMode = .scaleAspectFill
-        self.clipsToBounds = true
+        self.contentMode = contentMode!
+        self.clipsToBounds = clipsToBounds!
     }
 }

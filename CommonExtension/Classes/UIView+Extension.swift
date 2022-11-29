@@ -23,6 +23,13 @@ public struct UIRectSide: OptionSet {
 }
 
 public extension UIView{
+    convenience init(backgroundColor: UIColor? = .clear, clipsToBounds: Bool? = false, cornerRadius: CGFloat? = 0.0) {
+        self.init()
+        self.backgroundColor = backgroundColor
+        self.clipsToBounds = clipsToBounds!
+        self.layer.cornerRadius =  cornerRadius!
+    }
+
     // 使用贝塞尔曲线画圆角时UIView动画改变frame时有问题：width或者height不变，这时需要在frame改变后重新设置圆角，，，或者用常规的方式设置圆角就不会有问题了
     // 四个角都加圆角
     func addAllCorner(cornerRadius: CGFloat) {
