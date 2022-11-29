@@ -1,5 +1,5 @@
 PODS:
-  - CommonExtension (0.4.0)
+  - CommonExtension (0.6.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CommonExtension: 3f576494e983fb51b0cb3b6a7a01128f7dc8ab44
+  CommonExtension: ff408bf2cf240f73607be6ce5e8bdafc8e0806a6
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
 
 PODFILE CHECKSUM: bdd082e0eb26e3a599e86a9e024ffbb00926eba4

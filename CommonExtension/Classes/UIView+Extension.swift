@@ -30,6 +30,30 @@ public extension UIView{
         self.layer.cornerRadius =  cornerRadius!
     }
 
+    // 设置阴影加圆角
+    func addShadow(shadowColor: CGColor, shadowOffset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat? = 0.0){
+        self.layer.shadowColor = shadowColor
+        self.layer.shadowOffset = shadowOffset
+        self.layer.shadowRadius = shadowRadius
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.cornerRadius = cornerRadius!
+    }
+
+    // 设置渐变加圆角 (需要frame)
+    func addGradientLayer(colors: [Any], locations: [NSNumber], startPoint: CGPoint, endPoint: CGPoint, cornerRadius: CGFloat? = 0.0){
+        // 创建CAFradientLayer实例并设置参数
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors
+        gradientLayer.locations = locations
+        // 设置渐变方向
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.frame = self.bounds
+        gradientLayer.cornerRadius = cornerRadius!
+
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+
     // 使用贝塞尔曲线画圆角时UIView动画改变frame时有问题：width或者height不变，这时需要在frame改变后重新设置圆角，，，或者用常规的方式设置圆角就不会有问题了
     // 四个角都加圆角
     func addAllCorner(cornerRadius: CGFloat) {
