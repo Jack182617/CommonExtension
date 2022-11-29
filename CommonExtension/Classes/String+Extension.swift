@@ -91,6 +91,19 @@ public extension String{
         return predicate.evaluate(with: self)
     }
 
+    // 富文本字符串
+    func attributedString(attrs: [NSAttributedString.Key : Any], range: NSRange, lineSpace: CGFloat? = 0.0, alignment: NSTextAlignment? = .left) -> NSMutableAttributedString{
+        let attributeStr = NSMutableAttributedString.init(string: self)
+        let paragrapStyle = NSMutableParagraphStyle.init()
+        paragrapStyle.alignment = alignment!
+        paragrapStyle.lineSpacing = lineSpace!
+        var attArr = attrs
+        attArr[NSAttributedString.Key.paragraphStyle] = paragrapStyle
+        attributeStr.addAttributes(attrs, range: range)
+
+        return attributeStr
+    }
+
     // MARK: - 时间戳相关
     func formatTimeWithRex(rex: String) -> String {
         let string = NSString.init(string: self)
