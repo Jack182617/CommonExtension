@@ -30,7 +30,7 @@ public extension UIColor {
         }
         self.init(hex: intCode, alpha: alpha)
     }
-
+    
     convenience init(hex: Int, alpha: CGFloat = 1.0) {
         self.init(redValue: CGFloat((hex >> 16) & 0xFF),
                   greenValue: CGFloat((hex >> 8) & 0xFF),

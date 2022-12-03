@@ -27,4 +27,42 @@ public extension UIButton {
         self.init(type: .custom)
         setImage(image, for: .normal)
     }
+
+    enum Textposition: Int{
+        case TOP
+        case LEFT
+        case BOTTOM
+        case RIGHT
+    }
+
+    // 设置按钮文字和图片的相对位置
+    func setTextAndImagePosition(textPosition: Textposition, space: CGFloat) {
+        let imageSize = self.imageRect(forContentRect: self.frame)
+        let titleFont = self.titleLabel?.font!
+        let titleSize = (self.titleLabel?.text! as NSString?)?.size(withAttributes: [NSAttributedString.Key.font : titleFont ?? UIFont.systemFont(ofSize: 16)])
+
+        var titleInsets: UIEdgeInsets
+        var imageInsets: UIEdgeInsets
+
+        switch (textPosition){
+        case .TOP:
+            titleInsets = UIEdgeInsets(top: -(imageSize.height + titleSize!.height + space),
+                                       left: -(imageSize.width), bottom: 0, right: 0)
+            imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -titleSize!.width)
+        case .BOTTOM:
+            titleInsets = UIEdgeInsets(top: imageSize.height + space / 2,
+                                       left: -imageSize.width, bottom: 0, right: 0)
+            imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: titleSize!.height + space / 2, right: -titleSize!.width)
+        case .LEFT:
+            titleInsets = UIEdgeInsets(top: 0, left: -(imageSize.width * 2), bottom: 0, right: 0)
+            imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0,
+                                       right: -(titleSize!.width * 2 + space))
+        case .RIGHT:
+            titleInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -space)
+            imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+
+        self.titleEdgeInsets = titleInsets
+        self.imageEdgeInsets = imageInsets
+    }
 }
