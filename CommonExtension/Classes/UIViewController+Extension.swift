@@ -44,7 +44,7 @@ public extension UIViewController{
     }
 
     //提示选择
-    final func showSelectActionSheet(title:String,message:String,items:[String],selectedBlock:SelectedIndexBlock){
+    final func showSelectActionSheet(title:String,message:String,cancle:String,items:[String],selectedBlock:SelectedIndexBlock){
         let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .actionSheet)
         for item in items {
             let actTion = UIAlertAction.init(title: item, style: .default, handler: { (act) in
@@ -55,7 +55,7 @@ public extension UIViewController{
 
             alertController.addAction(actTion)
         }
-        let canCelAction = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
+        let canCelAction = UIAlertAction.init(title: cancle, style: .cancel, handler: nil)
         alertController.addAction(canCelAction)
         present(alertController, animated: true, completion: nil)
     }

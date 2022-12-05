@@ -32,6 +32,7 @@
 		0DF689D9B98148ACC86CA847 /* Pods-CommonExtension_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonExtension_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CommonExtension_Tests/Pods-CommonExtension_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2539018DE127037B4A256336 /* CommonExtension.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CommonExtension.podspec; path = ../CommonExtension.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2F05C940DE4F4DC66FEB3BA6 /* Pods-CommonExtension_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonExtension_Example.release.xcconfig"; path = "Target Support Files/Pods-CommonExtension_Example/Pods-CommonExtension_Example.release.xcconfig"; sourceTree = "<group>"; };
+		37825180293DCD1D00B47215 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54458AA8C1E10078A37CD00F /* Pods_CommonExtension_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonExtension_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* CommonExtension_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonExtension_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		EDD487D77063829068D0DDB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37825180293DCD1D00B47215 /* QuartzCore.framework */,
 				54458AA8C1E10078A37CD00F /* Pods_CommonExtension_Example.framework */,
 				C3088CD5AD3A641FE3F81420 /* Pods_CommonExtension_Tests.framework */,
 			);
