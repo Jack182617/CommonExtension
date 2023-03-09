@@ -42,7 +42,7 @@ public extension UIColor {
     }
 
     // 随机颜色
-    class var random: UIColor {
+    class var randomColor: UIColor {
         let r = CGFloat(arc4random() % 255) / 255.0
         let g = CGFloat(arc4random() % 255) / 255.0
         let b = CGFloat(arc4random() % 255) / 255.0
