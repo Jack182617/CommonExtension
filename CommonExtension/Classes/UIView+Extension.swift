@@ -106,7 +106,7 @@ public extension UIView{
 
     // 用view生成图片
     func makeImageWithView() -> UIImage{
-        UIGraphicsBeginImageContext(self.bounds.size)
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
         if let context: CGContext = UIGraphicsGetCurrentContext(){
             self.layer.render(in: context)
             let image = UIGraphicsGetImageFromCurrentImageContext()
