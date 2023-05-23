@@ -66,8 +66,8 @@ public extension UIView{
     }
 
     // 单独给每个角加圆角
-    func addSingleCorner(location: UIRectCorner, cornerRadius: CGSize) {
-        let maskPath = UIBezierPath.init(roundedRect: self.bounds, byRoundingCorners: location, cornerRadii: cornerRadius)
+    func addSingleCorner(location: UIRectCorner, cornerRadius: CGFloat) {
+        let maskPath = UIBezierPath.init(roundedRect: self.bounds, byRoundingCorners: location, cornerRadii: CGSize.init(width: cornerRadius, height: cornerRadius))
 
         let maskLayer = CAShapeLayer.init()
         maskLayer.frame = self.bounds
