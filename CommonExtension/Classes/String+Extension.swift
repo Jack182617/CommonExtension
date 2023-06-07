@@ -401,6 +401,41 @@ public extension String{
             return Int(result)
         }
     }
+    
+    // aesSBC加密
+    func aesCBCEncrypt(key: Data, iv: Data) -> Data? {
+        let data = self.data(using: .utf8)
+        let bufferSize = data!.count + kCCBlockSizeAES128
+        var buffer = [UInt8](repeating: 0, count: bufferSize)
+
+        var numBytesEncrypted = 0
+
+        let cryptStatus = key.withUnsafeBytes { keyBytes in
+            iv.withUnsafeBytes { ivBytes in
+                data!.withUnsafeBytes { dataBytes in
+                    CCCrypt(
+                        CCOperation(kCCEncrypt),
+                        CCAlgorithm(kCCAlgorithmAES128),
+                        CCOptions(kCCOptionPKCS7Padding),
+                        keyBytes.baseAddress,
+                        key.count,
+                        ivBytes.baseAddress,
+                        dataBytes.baseAddress,
+                        data!.count,
+                        &buffer,
+                        bufferSize,
+                        &numBytesEncrypted
+                    )
+                }
+            }
+        }
+
+        if cryptStatus == kCCSuccess {
+            return Data(buffer[..<numBytesEncrypted])
+        } else {
+            return nil
+        }
+    }
 }
 
 
