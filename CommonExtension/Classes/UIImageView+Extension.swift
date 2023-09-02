@@ -1,8 +1,8 @@
 //
 //  UIImageView+Extension.swift
-//  CarbonWorld
+//  
 //
-//  Created by 袁杰 on 2022/11/19.
+//  Created by Jack on 2022/11/19.
 //
 
 import Foundation

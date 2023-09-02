@@ -1,8 +1,8 @@
 //
 //  UIButton+Extension.swift
-//  CarbonWorld
+//  
 //
-//  Created by 袁杰 on 2022/11/16.
+//  Created by Jack on 2022/11/16.
 //
 
 import Foundation
@@ -35,7 +35,7 @@ public extension UIButton {
         case RIGHT
     }
 
-    // 设置按钮文字和图片的相对位置
+    // Set the relative position of button text and image
     func setTextAndImagePosition(textPosition: Textposition, space: CGFloat) {
         let imageSize = self.imageRect(forContentRect: self.frame)
         let titleFont = self.titleLabel?.font!

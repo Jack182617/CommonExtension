@@ -1,8 +1,8 @@
 //
 //  UILabel+Extension.swift
-//  CarbonWorld
+//  
 //
-//  Created by 袁杰 on 2022/11/16.
+//  Created by Jack on 2022/11/16.
 //
 
 import Foundation

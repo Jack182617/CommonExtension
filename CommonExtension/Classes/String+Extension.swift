@@ -1,8 +1,8 @@
 //
 //  String+Extension.swift
-//  SpeedR_Extension
+//  
 //
-//  Created by 袁杰 on 2022/9/27.
+//  Created by Jack on 2022/9/27.
 //
 
 import Foundation
@@ -11,9 +11,9 @@ import CoreLocation
 
 let KUrlCodingReservedCharacters = "!*'();:|@&=+$,/?%#[]{}"
 
-// MARK: - String扩展
+// MARK: - String
 public extension String{
-    // String转float
+    // String to float
     var floatValue: Float {
         return (self as NSString).floatValue
     }
@@ -41,7 +41,7 @@ public extension String{
     }
 
     /*
-     *去掉首尾空格
+     *Remove first and last spaces
      */
     var removeHeadAndTailSpace:String {
         let whitespace = NSCharacterSet.whitespaces
@@ -49,7 +49,8 @@ public extension String{
     }
 
     /*
-     *去掉首尾空格 包括后面的换行 \n
+     *
+     Remove the first and last spaces, including the following line breaks n
      */
     var removeHeadAndTailSpacePro:String {
         let whitespace = NSCharacterSet.whitespacesAndNewlines
@@ -57,56 +58,56 @@ public extension String{
     }
 
     /*
-     *去掉所有空格
+     *Remove all spaces
      */
     var removeAllSapce: String {
         return self.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
     }
     /*
-     *去掉所有换行
+     *Remove all line breaks
      */
     var removeAllLine: String {
         return self.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil)
     }
 
-    /// url编码
+    /// url code
     func urlEncode() -> String? {
         return self.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: KUrlCodingReservedCharacters).inverted)!
 
     }
 
-    /// url解码
+    /// url decode
     func urlDecode() -> String? {
         return self.removingPercentEncoding
     }
 
-    // 保留小数
+    // Retain Decimals
     func remainDecimal(position: Int) -> String {
         return String(format: "%.\(position)f", floatValue)
     }
 
-    // 判断纯中文
+    // Judging pure Chinese
     func isOnlyChinese() -> Bool{
         let match: String = "(^[\\u4e00-\\u9fa5]+$)"
         let predicate = NSPredicate(format: "SELF matches %@", match)
         return predicate.evaluate(with: self)
     }
 
-    // 判断纯数字
+    // Judge pure numbers
     func isOnlyNumbers() -> Bool{
         let match: String = "[0-9]*"
         let predicate = NSPredicate(format: "SELF matches %@", match)
         return predicate.evaluate(with: self)
     }
 
-    // 判断纯字母
+    // Judge pure letters
     func isOnlyLetters() -> Bool{
         let match: String = "[a-zA-Z]*"
         let predicate = NSPredicate(format: "SELF matches %@", match)
         return predicate.evaluate(with: self)
     }
 
-    // 判断只有字母或数字
+    // Determine if there are only letters or numbers
     func isOnlyAlphaNumeric() -> Bool{
         let match: String = "[a-zA-Z0-9]*"
         let predicate = NSPredicate(format: "SELF matches %@", match)
@@ -114,7 +115,7 @@ public extension String{
     }
 
     /**
-     判断是否包含该中文
+     Determine if the Chinese language is included
      */
     func containChinese(str:NSString) -> Bool{
         for i in 0 ..< str.length {
@@ -126,7 +127,7 @@ public extension String{
         return false
     }
 
-    // MARK:- 判断是否满足正则表达式
+    // MARK:- Determine whether the regular expression is met
     func fulfilRegularExpression(regex:String) -> Bool {
         var result = false
         let test = NSPredicate(format: "SELF MATCHES %@" , regex)
@@ -136,7 +137,7 @@ public extension String{
         return result;
     }
 
-    //判断是否是URL地址
+    // Determine if it is a URL address
     func isURL() -> Bool {
 
         var result1 = false
@@ -155,7 +156,7 @@ public extension String{
         return result1 || result2
     }
 
-    //验证电话号码
+    // Verify phone number
     func isPhoneNumber() -> Bool {
 
         var result = false
@@ -168,7 +169,7 @@ public extension String{
         return result;
     }
 
-    //验证邮箱格式
+    // Verify email format
     func isZipCodeNumber() -> Bool {
         if self.count == 0 {
             return false
@@ -183,7 +184,7 @@ public extension String{
         }
     }
 
-    //判断是否是身份证号
+    // Judge whether it is ID number
     func isUserIdCard() -> Bool {
         let pattern = "(^[0-9]{15}$)|([0-9]{17}([0-9]|X)$)";
         let pred = NSPredicate(format: "SELF MATCHES %@", pattern)
@@ -191,7 +192,7 @@ public extension String{
         return isMatch;
     }
 
-    // 富文本字符串
+    // Rich Text String
     func attributedString(attrs: [NSAttributedString.Key : Any], range: NSRange, lineSpace: CGFloat? = 0.0, alignment: NSTextAlignment? = .left) -> NSMutableAttributedString{
         let attributeStr = NSMutableAttributedString.init(string: self)
         let paragrapStyle = NSMutableParagraphStyle.init()
@@ -204,11 +205,11 @@ public extension String{
         return attributeStr
     }
 
-    //打电话
+    // call
     func callPhone() {
         let urlString = "tel://" + self
         if let url = URL(string: urlString) {
-            //根据iOS系统版本，分别处理
+            //
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:],
                                           completionHandler: {
@@ -220,7 +221,7 @@ public extension String{
         }
     }
 
-    //截取字符串
+    //
     func subStrToIndex(index: Int) -> String {
         return (self as NSString).substring(to: index)
     }
@@ -238,7 +239,7 @@ public extension String{
         return htmlToAttributedString?.string ?? ""
     }
 
-    // MARK: - 时间戳相关
+    // MARK: - Timestamp related
     func formatTimeWithRex(rex: String) -> String {
         let string = NSString.init(string: self)
         let timeSta: TimeInterval = string.doubleValue
@@ -248,25 +249,23 @@ public extension String{
         return timeFormatter.string(from: date)
     }
 
-    // 根据时间格式把当前时间戳转为时间
+    //
     func getCurrentTime() -> String {
         let date = Date()
         let timeFormatter = DateFormatter()
         //        timeFormatter.dateFormat = "yyyy-MM-dd 'at' HH:mm:ss.SSS"
         timeFormatter.dateFormat = self
         let strNowTime = timeFormatter.string(from: date) as String
-        //        print("系统当前时间：\(strNowTime)")
-        //        print("系统当前时间戳：\(date.timeIntervalSince1970)")
         return strNowTime
     }
 
     /**
-     根据字体和宽度计算文字高度
+     Calculate text height based on font and width
 
-     - parameter width: 约束宽度
-     - parameter font:  字体大小
+     - parameter width
+     - parameter font
 
-     - returns: 高度
+     - returns
      */
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
@@ -285,12 +284,12 @@ public extension String{
     }
 
     /**
-     根据字体和宽度计算文字宽度
+     Calculate text width based on font and width
 
-     - parameter width: 约束宽度
-     - parameter font:  字体大小
+     - parameter width
+     - parameter font
 
-     - returns: 宽度
+     - returns
      */
     func widthWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
@@ -309,7 +308,7 @@ public extension String{
     }
 
     /**
-     将json字符串转dic
+     Convert JSON string to DIC
      */
     func getDictionaryFromJSONString() -> NSDictionary{
 
@@ -325,7 +324,7 @@ public extension String{
     }
 
     /**
-     将json字符串转数组
+     Convert JSON strings into arrays
      */
     func getArrayFromJSONString() -> NSArray{
 
@@ -339,14 +338,14 @@ public extension String{
 
     }
 
-    //计算两个经纬度点的直线距离
+    // Calculate the straight-line distance between two latitude and longitude points
     func getDistanceBetweenFromCoor(coor1: CLLocationCoordinate2D, coor2: CLLocationCoordinate2D) -> Double{
         let curLocation = CLLocation.init(latitude: coor1.latitude, longitude: coor1.longitude)
         let otherLocation = CLLocation.init(latitude: coor2.latitude, longitude: coor2.longitude)
         return curLocation.distance(from: otherLocation)
     }
 
-    //非对称加密算法
+    // Asymmetric encryption algorithm
     func hmac(algorithm: CryptoAlgorithm, key: String) -> String {
         let str = self.cString(using: String.Encoding.utf8)
         let strLen = Int(self.lengthOfBytes(using: String.Encoding.utf8))
@@ -371,7 +370,7 @@ public extension String{
         return String(hash).lowercased()
     }
 
-    //非对称加密算法相关
+    // Asymmetric encryption algorithm related
     enum CryptoAlgorithm {
         case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 
@@ -402,7 +401,7 @@ public extension String{
         }
     }
     
-    // aesSBC加密
+    // AESSBC encryption
     func aesCBCEncrypt(key: Data, iv: Data) -> Data? {
         let data = self.data(using: .utf8)
         let bufferSize = data!.count + kCCBlockSizeAES128

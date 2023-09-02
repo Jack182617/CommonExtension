@@ -1,14 +1,14 @@
 //
 //  UIColor+Extension.swift
-//  SpeedR_Extension
+//  
 //
-//  Created by 袁杰 on 2022/9/27.
+//  Created by Jack on 2022/9/27.
 //
 
 import Foundation
 
-// MARK: - UIColor扩展
-// 提供通过hex/hex字符串生成颜色
+// MARK: - UIColor
+// Provide color generation through hex/hex strings
 public extension UIColor {
 
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
@@ -41,7 +41,7 @@ public extension UIColor {
         self.init(red: redValue / 255.0, green: greenValue / 255.0, blue: blueValue / 255.0, alpha: alpha)
     }
 
-    // 随机颜色
+    // Provide random color generation through hex/hex strings
     class var randomColor: UIColor {
         let r = CGFloat(arc4random() % 255) / 255.0
         let g = CGFloat(arc4random() % 255) / 255.0

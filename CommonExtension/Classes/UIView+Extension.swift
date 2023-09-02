@@ -1,8 +1,8 @@
 //
 //  UIView+Extension.swift
-//  SpeedR_Extension
+//  
 //
-//  Created by 袁杰 on 2022/10/10.
+//  Created by Jack on 2022/10/10.
 //
 
 import Foundation
@@ -31,7 +31,7 @@ public extension UIView{
         self.layer.cornerRadius =  cornerRadius!
     }
 
-    // 设置阴影加圆角
+    // Set Shadow and Fillet
     func addShadow(shadowColor: CGColor, shadowOffset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat? = 0.0){
         self.layer.shadowColor = shadowColor
         self.layer.shadowOffset = shadowOffset
@@ -40,13 +40,13 @@ public extension UIView{
         self.layer.cornerRadius = cornerRadius!
     }
 
-    // 设置渐变加圆角 (需要frame)
+    // Set gradient and rounded corners (requires a frame)
     func addGradientLayer(colors: [Any], locations: [NSNumber], startPoint: CGPoint, endPoint: CGPoint, cornerRadius: CGFloat? = 0.0){
-        // 创建CAFradientLayer实例并设置参数
+        //
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.locations = locations
-        // 设置渐变方向
+        //
         gradientLayer.startPoint = startPoint
         gradientLayer.endPoint = endPoint
         gradientLayer.frame = self.bounds
@@ -55,8 +55,7 @@ public extension UIView{
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    // 使用贝塞尔曲线画圆角时UIView动画改变frame时有问题：width或者height不变，这时需要在frame改变后重新设置圆角，，，或者用常规的方式设置圆角就不会有问题了
-    // 四个角都加圆角
+    // Add rounded corners to all four corners
     func addAllCorner(cornerRadius: CGFloat) {
         let maskPath = UIBezierPath.init(roundedRect: self.bounds, cornerRadius: cornerRadius)
         let maskLayer = CAShapeLayer.init()
@@ -65,7 +64,7 @@ public extension UIView{
         self.layer.mask = maskLayer
     }
 
-    // 单独给每个角加圆角
+    // Add rounded corners to each corner separately
     func addSingleCorner(location: UIRectCorner, cornerRadius: CGFloat) {
         let maskPath = UIBezierPath.init(roundedRect: self.bounds, byRoundingCorners: location, cornerRadii: CGSize.init(width: cornerRadius, height: cornerRadius))
 
@@ -75,7 +74,7 @@ public extension UIView{
         self.layer.mask = maskLayer
     }
 
-    // 给四个角设置不同的圆角 (四个角同时设置)
+    // Set different fillets for the four corners (set all four corners simultaneously)
     func addFourCorner(topLeft: CGFloat, topRight: CGFloat, bottomLeft: CGFloat, bottomRight: CGFloat) {
         let minX = bounds.minX
         let minY = bounds.minY
@@ -104,7 +103,7 @@ public extension UIView{
         self.layer.mask = maskLayer
     }
 
-    // 用view生成图片
+    // Generate images using view
     func makeImageWithView() -> UIImage{
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
         if let context: CGContext = UIGraphicsGetCurrentContext(){

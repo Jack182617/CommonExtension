@@ -1,8 +1,8 @@
 //
 //  Array+Extension.swift
-//  SpeedR_Extension
+//  
 //
-//  Created by 袁杰 on 2022/11/3.
+//  Created by Jack on 2022/11/3.
 //
 
 import Foundation

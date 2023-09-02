@@ -1,8 +1,8 @@
 //
 //  Date+Extension.swift
-//  CommonExtension
+// 
 //
-//  Created by 袁杰 on 2022-12-04.
+//  Created by Jack on 2022-12-04.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ public extension Date {
         return String(day)
     }
 
-    /// 通用时间 String ，1 小时以内显示刚刚
+    ///
     var simpleString: String? {
         let differTime = self.diffTime()
         guard differTime > 0 else {
@@ -39,13 +39,13 @@ public extension Date {
         var dateString: String?
 
         if differTime < 60 * 60 {
-            dateString = "刚刚"
+            dateString = "just"
         } else if (differTime > 60 * 60) && (differTime < 60 * 60 * 24) {
             let hour:Int = Int(floor(differTime / (60 * 60)))
-            dateString = "\(hour)小时前"
+            dateString = "\(hour)hours ago"
         } else if (differTime > 60 * 60 * 24) && (differTime < 60 * 60 * 24 * 3) {
             let day:Int = Int(ceil(differTime / (60 * 60 * 24)))
-            dateString = "\(day)天前"
+            dateString = "\(day)days ago"
         } else if (differTime > 60 * 60 * 24 * 3){
             let converFormatter = DateFormatter()
             converFormatter.dateFormat = "yyyy-MM-dd"
@@ -54,7 +54,7 @@ public extension Date {
         return dateString
     }
 
-    /// 通用时间 String ，5 分钟以内显示刚刚
+    ///
     var chatMessageString: String? {
         let differTime = self.diffTime()
         guard differTime > 0 else {
@@ -66,9 +66,9 @@ public extension Date {
         }else {
             if differTime > 5 * 60 {
                 let minute:Int = Int(floor(differTime / (60)))
-                dateString = "\(minute)分钟前"
+                dateString = "\(minute)minutes ago"
             }else {
-                dateString = "刚刚"
+                dateString = "just"
             }
         }
         return dateString

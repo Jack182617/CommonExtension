@@ -1,8 +1,8 @@
 //
 //  DispatchQueue+Extension.swift
-//  CommonExtension
+//  
 //
-//  Created by 袁杰 on 2022-12-04.
+//  Created by Jack on 2022-12-04.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public extension DispatchQueue {
     }
 
     typealias CancelTask = (_ cancel: Bool) -> Void
-    /// 可以取消的延时操作
+    /// 
     func delay(_ time: TimeInterval, task: @escaping () -> ()) -> CancelTask? {
         func dispatch_later(block: @escaping () -> ()) {
             let t = DispatchTime.now() + time

@@ -1,8 +1,8 @@
 //
 //  UITapGestureRecognizer+Extension.swift
-//  SpeedR_Extension
+//  
 //
-//  Created by 袁杰 on 2022/10/18.
+//  Created by Jack on 2022/10/18.
 //
 
 import Foundation

@@ -1,8 +1,8 @@
 //
 //  UIViewController+Extension.swift
-//  CommonExtension/Users/o--o/Code/开源项目/YJModules/CommonExtension
+//  
 //
-//  Created by 袁杰 on 2022-12-04.
+//  Created by Jack on 2022-12-04.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ public extension UIViewController{
         self.navigationController?.popViewController(animated: animated)
     }
 
-    //提示
+    //
     final func showNoticeAlertView(title:String,message:String,leftStr:String,rightStr:String,sureAlertClickBlock:SureAlertClickBlock){
         let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
 
@@ -43,7 +43,7 @@ public extension UIViewController{
         self.present(alertController, animated: true, completion: nil)
     }
 
-    //提示选择
+    //
     final func showSelectActionSheet(title:String,message:String,cancle:String,items:[String],selectedBlock:SelectedIndexBlock){
         let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .actionSheet)
         for item in items {
@@ -60,56 +60,56 @@ public extension UIViewController{
         present(alertController, animated: true, completion: nil)
     }
 
-    //跳转到已安装的地图导航
+    // Jump to installed map navigation
     func checkAndGoNav(coordinate : CLLocationCoordinate2D,endPlace : String) {
         var maps = [[String:String]]()
 
         var iosMapDic = [String:String]()
-        iosMapDic["title"] = "苹果地图"
+        iosMapDic["title"] = "Apple Maps"
         maps.append(iosMapDic)
 
-        //百度地图
+        // Baidu map
         if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://")!){
             var baiduMapDic = [String:String]()
-            baiduMapDic["title"] = "百度地图"
-            let urlString = "baidumap://map/direction?origin={{我的位置}}&destination=latlng:\(coordinate.latitude),\(coordinate.longitude)|name=\(endPlace)&mode=driving&coord_type=gcj02"
+            baiduMapDic["title"] = "Baidu map"
+            let urlString = "baidumap://map/direction?origin={{mine_location}}&destination=latlng:\(coordinate.latitude),\(coordinate.longitude)|name=\(endPlace)&mode=driving&coord_type=gcj02"
             baiduMapDic["url"] = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             maps.append(baiduMapDic)
         }
 
-        //高德地图
+        // AMAP
         if UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!){
             var gaodeMapDic = [String:String]()
-            gaodeMapDic["title"] = "高德地图"
-            let urlString = "iosamap://navi?sourceApplication=\("导航")&backScheme=\("com.fangyizhan.fyzC")&poiname=\(endPlace)&lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&dev=0&style=2"
+            gaodeMapDic["title"] = "AMAP"
+            let urlString = "iosamap://navi?sourceApplication=\("navigation")&backScheme=\("bundle Id")&poiname=\(endPlace)&lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&dev=0&style=2"
             gaodeMapDic["url"] = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             maps.append(gaodeMapDic)
         }
 
-        //谷歌地图
+        // Google Maps
         if UIApplication.shared.canOpenURL(URL.init(string: "comgooglemaps://")!){
             var googleMapDic = [String:String]()
-            googleMapDic["title"] = "谷歌地图"
-            let urlString = "comgooglemaps://?x-source=\("导航")&x-success=\("com.fangyizhan.fyzC")&saddr=\(endPlace)&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving"
+            googleMapDic["title"] = "Google Maps"
+            let urlString = "comgooglemaps://?x-source=\("navigation")&x-success=\("bundle Id")&saddr=\(endPlace)&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving"
             googleMapDic["url"] = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             maps.append(googleMapDic)
         }
 
-        //腾讯地图
+        // Tencent Maps
         if UIApplication.shared.canOpenURL(URL.init(string: "qqmap://")!){
             var qqMapDic = [String:String]()
-            qqMapDic["title"] = "腾讯地图"
-            let urlString = "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=\(coordinate.latitude),\(coordinate.longitude)&to=\(endPlace)&coord_type=1&policy=0"
+            qqMapDic["title"] = "Tencent Maps"
+            let urlString = "qqmap://map/routeplan?from=mine_loation&type=drive&tocoord=\(coordinate.latitude),\(coordinate.longitude)&to=\(endPlace)&coord_type=1&policy=0"
             qqMapDic["url"] = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             maps.append(qqMapDic)
         }
 
-        let alertController = UIAlertController.init(title: "导航", message: "选择地图", preferredStyle: .actionSheet)
+        let alertController = UIAlertController.init(title: "navigation", message: "selec map", preferredStyle: .actionSheet)
         for i in 0 ..< maps.count {
             let actTion = UIAlertAction.init(title: maps[i]["title"], style: .default, handler: { (act) in
-                //跳转地图
+                //
                 if 0 == i{
-                    //苹果原生地图导航
+                    // Apple native map navigation
                     let currentLocation =  MKMapItem.forCurrentLocation()
                     let toLocation = MKMapItem.init(placemark: MKPlacemark.init(coordinate: coordinate, addressDictionary: nil))
                     MKMapItem.openMaps(with: [currentLocation, toLocation],
@@ -123,49 +123,49 @@ public extension UIViewController{
 
             alertController.addAction(actTion)
         }
-        let canCelAction = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
+        let canCelAction = UIAlertAction.init(title: "cancel", style: .cancel, handler: nil)
         alertController.addAction(canCelAction)
         present(alertController, animated: true, completion: nil)
 
     }
 
-    //读取本地plist文件
+    // Read local plist file
     func readLocalPlistWithName(plistName: String) -> NSArray{
         guard let path = Bundle.main.path(forResource: plistName, ofType: "plist") else { return NSArray.init() }
         return NSArray.init(contentsOfFile: path) ?? NSArray.init()
 
     }
 
-    //把数据存储为plist文件  Array<Dictionary<String, Any>>
+    // Store data as plist file Array<Dictionary<String, Any>>
     func writeArrToPlist(plistArr: Array<Any>, plistName: String) {
         let cachePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
         let filePath = cachePath! + "/\(plistName).plist"
         (plistArr as NSArray).write(toFile: filePath, atomically: true)
     }
 
-    //获取当前屏幕显示的viewcontroller
+    // Obtain the viewcontroller displayed on the current screen
     func getCurrentVCFrom(rootVC:UIViewController) -> UIViewController {
         var currentVC = UIViewController()
         if let vc = currentVC.presentedViewController{
-            // 视图是被presented出来的
+            // The view is presented
             currentVC = vc
         }
 
         if rootVC.isKind(of: UITabBarController.self){
-            // 根视图为UITabBarController
+            // The root view is UITabBarController
             currentVC = self.getCurrentVCFrom(rootVC: (rootVC as! UITabBarController).selectedViewController!)
         }else if rootVC.isKind(of: UINavigationController.self){
-            // 根视图为UINavigationController
+            // The root view is UINavigationController
             currentVC = self.getCurrentVCFrom(rootVC: (rootVC as! UINavigationController).visibleViewController!)
         }else{
-            // 根视图为非导航类
+            // The root view is a non navigation class
             currentVC = rootVC
         }
 
         return currentVC
     }
 
-    //回到指定的controller
+    // Return to the specified controller
     func popToTargetController(controllerType:UIViewController.Type) {
         let controArr = self.navigationController?.viewControllers
         if 0 < controArr!.count{
@@ -177,18 +177,18 @@ public extension UIViewController{
         }
     }
 
-    //MARK:- 生成二维码
+    //MARK:- Generate QR code
     func creatQRCodeImage(text: String, WH: CGFloat) -> UIImage{
 
-        //创建滤镜
+        // Create a filter
         let filter = CIFilter(name: "CIQRCodeGenerator")
-        //还原滤镜的默认属性
+        // Restore the default attributes of the filter
         filter?.setDefaults()
-        //设置需要生成二维码的数据
+        // Set the data that needs to generate a QR code
         filter?.setValue(text.data(using: String.Encoding.utf8), forKey: "inputMessage")
-        //从滤镜中取出生成的图片
+        // Remove the generated image from the filter
         let ciImage = filter?.outputImage
-        //这个清晰度好
+        // Better clarity
         let bgImage = createNonInterpolatedUIImageFormCIImage(image: ciImage!, size: WH)
 
         return bgImage
@@ -214,7 +214,7 @@ public extension UIViewController{
         return UIImage(cgImage: scaledImage)
     }
 
-    //保存图片到本地
+    // Save Image to Local
     @objc func saveToLocal(localImg: UIImage,  resultBlock: SavePicToLoacalBlock) {
         let status = PHPhotoLibrary.authorizationStatus()
         if status == PHAuthorizationStatus.restricted || status == PHAuthorizationStatus.denied{
