@@ -435,6 +435,28 @@ public extension String{
             return nil
         }
     }
+    
+    //
+    func convertStringToBase64String() -> String{
+        if let data = self.data(using: .utf8) {
+            let base64String = data.base64EncodedString()
+            return base64String
+        } else {
+            return ""
+        }
+    }
+    
+    func convertBase64StringToString() -> String{
+        if let data = Data(base64Encoded: self) {
+            if let decodedString = String(data: data, encoding: .utf8) {
+                return decodedString
+            } else {
+                return ""
+            }
+        } else {
+            return ""
+        }
+    }
 }
 
 
