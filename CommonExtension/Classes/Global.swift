@@ -2,12 +2,12 @@
 //  Global.swift
 //  CommonExtension
 //
-//  Created by 袁杰 on 2024/7/30.
+//  Created by Jack on 2024/7/30.
 //
 
 import Foundation
 
-func generateStructFromJSON(jsonString: String, structName: String, protocolName: String) -> String {
+public func generateStructFromJSON(jsonString: String, structName: String, protocolName: String) -> String {
     // Parse JSON string into data
     guard let jsonData = jsonString.data(using: .utf8) else {
         return "Invalid JSON string"
