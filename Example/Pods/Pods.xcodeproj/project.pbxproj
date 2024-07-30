@@ -39,7 +39,7 @@
 		8A747EC7E8522BFA4F134B48A0F35A17 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDE943A35AC066B1662BB8AA98D412 /* UILabel+Extension.swift */; };
 		8AE19756F0126FE92AF625E36F3D70FE /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		8F3884934A0078B504E400231ED81AAC /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F00AFAC3F3CD4AED34FCEB71EBE7 /* UITextField+Extension.swift */; };
-		969FFE112C58DF0D00BE9EF0 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969FFE102C58DF0D00BE9EF0 /* Global.swift */; };
+		969FFE132C58E0F100BE9EF0 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969FFE122C58E0F100BE9EF0 /* Global.swift */; };
 		9D3C5E2F56838937146191468A893244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E658F388F01C72599CA75537950B6095 /* XCTest.framework */; };
 		A7D7DA457CDD07E1F2623A15014D20AD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6085695CCFB47401CA7C1818F4EE2A42 /* UIButton+Extension.swift */; };
 		B52281F9F4340D4FC8ABB2FEB1FEC08E /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
@@ -130,7 +130,7 @@
 		92C11B2C63ADD8BF21AFDE6E60E553C5 /* UITapGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITapGestureRecognizer+Extension.swift"; path = "CommonExtension/Classes/UITapGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
 		9468E867498BBAF36F9AFFE4845F8B09 /* FBSnapshotTestCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.debug.xcconfig; sourceTree = "<group>"; };
 		96187BF3038121CC146335E9FF0B0AFF /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		969FFE102C58DF0D00BE9EF0 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		969FFE122C58E0F100BE9EF0 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Global.swift; path = CommonExtension/Classes/Global.swift; sourceTree = "<group>"; };
 		98E25CC0A8EB9419D24B91698380DA76 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "CommonExtension/Classes/Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -344,7 +344,7 @@
 		E1574212695852BB913AB7CF9A6B3074 /* CommonExtension */ = {
 			isa = PBXGroup;
 			children = (
-				969FFE102C58DF0D00BE9EF0 /* Global.swift */,
+				969FFE122C58E0F100BE9EF0 /* Global.swift */,
 				DD7D5C2A46D515D86F6B22BA3A5EE589 /* Array+Extension.swift */,
 				2EFB4F09BF72D1DD6B27CC61F236D640 /* Date+Extension.swift */,
 				98E25CC0A8EB9419D24B91698380DA76 /* Dictionary+Extension.swift */,
@@ -607,7 +607,7 @@
 				0A307D08259BB08635995A006C8F39A2 /* String+Extension.swift in Sources */,
 				A7D7DA457CDD07E1F2623A15014D20AD /* UIButton+Extension.swift in Sources */,
 				DC8AC78BD23A740E19F111FAC58E31E5 /* UIColor+Extension.swift in Sources */,
-				969FFE112C58DF0D00BE9EF0 /* Global.swift in Sources */,
+				969FFE132C58E0F100BE9EF0 /* Global.swift in Sources */,
 				5E2396916D596BA2FE355D6C5A95A48B /* UIFont+Extension.swift in Sources */,
 				41661505A49D9BE60E7D2605414F1DF9 /* UIImage+Extension.swift in Sources */,
 				D7C9F89DBE93A4AC4A9B5FBD02494775 /* UIImageView+Extension.swift in Sources */,
