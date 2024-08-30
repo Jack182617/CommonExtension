@@ -167,25 +167,3 @@ public extension UIView{
     }
     
 }
-
-public extension UILabel {
-
-    var lineSpacing: CGFloat {
-        get {
-            guard let attributedText = attributedText, attributedText.length > 0 else { return 0 }
-            let paragraphStyle = attributedText.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle
-            return paragraphStyle?.lineSpacing ?? 0
-        }
-        set {
-            guard let labelText = text else { return }
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = newValue
-            paragraphStyle.alignment = textAlignment
-            
-            let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-            
-            self.attributedText = attributedString
-        }
-    }
-}

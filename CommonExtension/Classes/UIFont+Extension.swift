@@ -1,6 +1,6 @@
 //
 //  UIFont+Extension.swift
-//  
+//
 //
 //  Created by Jack on 2022/9/30.
 //
@@ -27,7 +27,7 @@ public extension UIFont {
     class func heavy(_ size: CGFloat) -> UIFont { .systemFont(ofSize: size, weight: .heavy) }
     
     class func black(_ size: CGFloat) -> UIFont { .systemFont(ofSize: size, weight: .black) }
-
+    
     // PingFangSC
     class func pfUltralight(_ size: CGFloat) -> UIFont {
         UIFont(name: "PingFangSC-Ultralight", size: size) ?? .ultraLight(size)
@@ -48,7 +48,7 @@ public extension UIFont {
     class func pfMedium(_ size: CGFloat) -> UIFont {
         UIFont(name: "PingFangSC-Medium", size: size) ?? .medium(size)
     }
-
+    
     class func pfSemibold(_ size: CGFloat) -> UIFont {
         UIFont(name: "PingFangSC-Semibold", size: size) ?? .semibold(size)
     }
@@ -64,5 +64,5 @@ public extension UIFont {
     class func pfBlack(_ size: CGFloat) -> UIFont {
         UIFont(name: "PingFangSC-Black", size: size) ?? .black(size)
     }
-
+    
 }

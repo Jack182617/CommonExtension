@@ -1,6 +1,6 @@
 //
 //  UIButton+Extension.swift
-//  
+//
 //
 //  Created by Jack on 2022/11/16.
 //
@@ -22,29 +22,29 @@ public extension UIButton {
         setBackgroundImage(backgroundImage, for: .normal)
         setBackgroundImage(backgroundImage, for: .highlighted)
     }
-
+    
     convenience init(image: UIImage) {
         self.init(title: "", image: image)
     }
-
+    
     enum TextPosition {
         case top
         case left
         case bottom
         case right
     }
-
+    
     // Set the relative position of button text and image
     func setTextAndImagePosition(textPosition: TextPosition, space: CGFloat) {
         guard let titleLabel = self.titleLabel, let imageView = self.imageView else { return }
-            
-            let imageSize = imageView.frame.size
-            let titleFont = titleLabel.font ?? UIFont.systemFont(ofSize: 16)
-            let titleSize = (titleLabel.text as NSString?)?.size(withAttributes: [NSAttributedString.Key.font: titleFont]) ?? CGSize.zero
-            
-            var titleInsets: UIEdgeInsets = .zero
+        
+        let imageSize = imageView.frame.size
+        let titleFont = titleLabel.font ?? UIFont.systemFont(ofSize: 16)
+        let titleSize = (titleLabel.text as NSString?)?.size(withAttributes: [NSAttributedString.Key.font: titleFont]) ?? CGSize.zero
+        
+        var titleInsets: UIEdgeInsets = .zero
         var imageInsets: UIEdgeInsets
-
+        
         switch textPosition {
         case .top:
             titleInsets = UIEdgeInsets(top: -(imageSize.height + titleSize.height + space),
@@ -61,7 +61,7 @@ public extension UIButton {
             titleInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -space)
             imageInsets = UIEdgeInsets(top: 0, left: -space, bottom: 0, right: 0)
         }
-
+        
         self.titleEdgeInsets = titleInsets
         self.imageEdgeInsets = imageInsets
     }
