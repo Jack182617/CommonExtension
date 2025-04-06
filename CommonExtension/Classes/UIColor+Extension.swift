@@ -10,7 +10,6 @@ import Foundation
 // MARK: - UIColor
 // Provide color generation through hex/hex strings
 public extension UIColor {
-    
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         var hexString = hexString.hasPrefix("#") ? String(hexString.dropFirst()) : hexString
         guard hexString.count == 3 || hexString.count == 6 else {

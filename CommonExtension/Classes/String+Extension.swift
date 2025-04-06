@@ -12,133 +12,72 @@ import CoreLocation
 let KUrlCodingReservedCharacters = "!*'();:|@&=+$,/?%#[]{}"
 
 // MARK: - String
-public extension String{
-    // String to float
-    var floatValue: Float {
-        return (self as NSString).floatValue
+public extension String {
+    var intValue: Int { (self as NSString).integerValue }
+    var floatValue: Float { (self as NSString).floatValue }
+    var doubleValue: Double { (self as NSString).doubleValue }
+}
+public extension String {
+    var trimmed: String {
+        trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    var doubleValue: Double {
-        return (self as NSString).doubleValue
+    var trimmedSpaces: String {
+        trimmingCharacters(in: .whitespaces)
     }
     
-    var intValue: Int {
-        return (self as NSString).integerValue
+    var removedAllSpaces: String {
+        replacingOccurrences(of: " ", with: "")
     }
     
-    var md5: String {
-        let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
-        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
-        CC_MD5(str!, strLen, result)
-        let hash = NSMutableString()
-        for i in 0 ..< digestLen {
-            hash.appendFormat("%02x", result[i])
-        }
-        result.deallocate()
-        return String(format: hash as String)
+    var removedAllNewLines: String {
+        replacingOccurrences(of: "\n", with: "")
     }
-    
-    /*
-     *Remove first and last spaces
-     */
-    var removeHeadAndTailSpace:String {
-        let whitespace = NSCharacterSet.whitespaces
-        return self.trimmingCharacters(in: whitespace)
-    }
-    
-    /*
-     *
-     Remove the first and last spaces, including the following line breaks n
-     */
-    var removeHeadAndTailSpacePro:String {
-        let whitespace = NSCharacterSet.whitespacesAndNewlines
-        return self.trimmingCharacters(in: whitespace)
-    }
-    
-    /*
-     *Remove all spaces
-     */
-    var removeAllSapce: String {
-        return self.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-    }
-    /*
-     *Remove all line breaks
-     */
-    var removeAllLine: String {
-        return self.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil)
-    }
-    
-    /// url code
-    func urlEncode() -> String? {
-        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: KUrlCodingReservedCharacters).inverted)!
-        
-    }
-    
-    /// url decode
-    func urlDecode() -> String? {
-        return self.removingPercentEncoding
-    }
-    
-    // Retain Decimals
-    func remainDecimal(position: Int) -> String {
-        return String(format: "%.\(position)f", floatValue)
-    }
-    
-    // Judging pure Chinese
-    func isOnlyChinese() -> Bool{
-        let match: String = "(^[\\u4e00-\\u9fa5]+$)"
-        let predicate = NSPredicate(format: "SELF matches %@", match)
-        return predicate.evaluate(with: self)
-    }
-    
-    // Judge pure numbers
-    func isOnlyNumbers() -> Bool{
-        let match: String = "[0-9]*"
-        let predicate = NSPredicate(format: "SELF matches %@", match)
-        return predicate.evaluate(with: self)
-    }
-    
-    // Judge pure letters
-    func isOnlyLetters() -> Bool{
-        let match: String = "[a-zA-Z]*"
-        let predicate = NSPredicate(format: "SELF matches %@", match)
-        return predicate.evaluate(with: self)
-    }
-    
-    // Determine if there are only letters or numbers
-    func isOnlyAlphaNumeric() -> Bool{
-        let match: String = "[a-zA-Z0-9]*"
-        let predicate = NSPredicate(format: "SELF matches %@", match)
-        return predicate.evaluate(with: self)
-    }
-    
-    /**
-     Determine if the Chinese language is included
-     */
-    func containChinese(str:NSString) -> Bool{
-        for i in 0 ..< str.length {
-            let a = str.character(at: i)
-            if a > 0x4e00 && a < 0x9fff {
-                return true
-            }
-        }
-        return false
-    }
-    
-    // MARK:- Determine whether the regular expression is met
-    func fulfilRegularExpression(regex:String) -> Bool {
+}
+public extension String {
+    func matches(regex: String) -> Bool {
         var result = false
         let test = NSPredicate(format: "SELF MATCHES %@" , regex)
         
         result = (test.evaluate(with: self))
         
-        return result;
+        return result
     }
-    
-    // Determine if it is a URL address
-    func isURL() -> Bool {
+    var isOnlyChinese: Bool {
+        let match: String = "(^[\\u4e00-\\u9fa5]+$)"
+        let predicate = NSPredicate(format: "SELF matches %@", match)
+        return predicate.evaluate(with: self)
+    }
+    var isOnlyNumbers: Bool {
+        let match: String = "[0-9]*"
+        let predicate = NSPredicate(format: "SELF matches %@", match)
+        return predicate.evaluate(with: self)
+    }
+    var isOnlyLetters: Bool {
+        let match: String = "[a-zA-Z]*"
+        let predicate = NSPredicate(format: "SELF matches %@", match)
+        return predicate.evaluate(with: self)
+    }
+    var isEmail: Bool {
+        if self.count == 0 {
+            return false
+        }
+        let zipCodeNumber = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let regexCodeNumber = NSPredicate(format: "SELF MATCHES %@",zipCodeNumber)
+        if regexCodeNumber.evaluate(with: self) == true {
+            return true
+        }else
+        {
+            return false
+        }
+    }
+    var isIDCardNumber: Bool {
+        let pattern = "(^[0-9]{15}$)|([0-9]{17}([0-9]|X)$)";
+        let pred = NSPredicate(format: "SELF MATCHES %@", pattern)
+        let isMatch:Bool = pred.evaluate(with: self)
+        return isMatch;
+    }
+    var isURL: Bool {
         
         var result1 = false
         var result2 = false
@@ -155,73 +94,107 @@ public extension String{
         
         return result1 || result2
     }
-    
-    // Verify phone number
-    func isPhoneNumber() -> Bool {
-        
-        var result = false
-        
-        let phoneRegex = "^((13[0-9])|(17[0-9])|(19[0-9])|(14[^4,\\D])|(15[^4,\\D])|(18[0-9]))\\d{8}$|^1(7[0-9])\\d{8}$";
-        let phoneTest = NSPredicate(format: "SELF MATCHES %@" , phoneRegex)
-        
-        result = (phoneTest.evaluate(with: self))
-        
-        return result;
-    }
-    
-    // Verify email format
-    func isZipCodeNumber() -> Bool {
-        if self.count == 0 {
-            return false
+    func containsChinese() -> Bool {
+        for i in 0 ..< (self as NSString).length {
+            let a = (self as NSString).character(at: i)
+            if a > 0x4e00 && a < 0x9fff {
+                return true
+            }
         }
-        let zipCodeNumber = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let regexCodeNumber = NSPredicate(format: "SELF MATCHES %@",zipCodeNumber)
-        if regexCodeNumber.evaluate(with: self) == true {
-            return true
-        }else
-        {
-            return false
-        }
+        return false
+    }
+}
+public extension String {
+    var urlEncoded: String? {
+        addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: KUrlCodingReservedCharacters).inverted)
     }
     
-    // Judge whether it is ID number
-    func isUserIdCard() -> Bool {
-        let pattern = "(^[0-9]{15}$)|([0-9]{17}([0-9]|X)$)";
-        let pred = NSPredicate(format: "SELF MATCHES %@", pattern)
-        let isMatch:Bool = pred.evaluate(with: self)
-        return isMatch;
+    var urlDecoded: String? {
+        removingPercentEncoding
     }
-    
-    // Rich Text String
-    func attributedString(attrs: [NSAttributedString.Key : Any], range: NSRange, lineSpace: CGFloat? = 0.0, alignment: NSTextAlignment? = .left) -> NSMutableAttributedString{
+}
+public extension String {
+    func toAttributedString(
+        attributes: [NSAttributedString.Key: Any],
+        range: NSRange,
+        lineSpacing: CGFloat = 0,
+        alignment: NSTextAlignment = .left
+    ) -> NSMutableAttributedString {
         let attributeStr = NSMutableAttributedString.init(string: self)
         let paragrapStyle = NSMutableParagraphStyle.init()
-        paragrapStyle.alignment = alignment!
-        paragrapStyle.lineSpacing = lineSpace!
-        var attArr = attrs
+        paragrapStyle.alignment = alignment
+        paragrapStyle.lineSpacing = lineSpacing
+        var attArr = attributes
         attArr[NSAttributedString.Key.paragraphStyle] = paragrapStyle
-        attributeStr.addAttributes(attrs, range: range)
+        attributeStr.addAttributes(attributes, range: range)
         
         return attributeStr
     }
-    
-    // call
-    func callPhone() {
-        let urlString = "tel://" + self
-        if let url = URL(string: urlString) {
-            //
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                          completionHandler: {
-                    (success) in
-                })
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
+}
+public extension String {
+    func formatTimestamp(using format: String) -> String {
+        let string = NSString.init(string: self)
+        let timeSta: TimeInterval = string.doubleValue
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = format
+        let date = Date.init(timeIntervalSince1970: timeSta)
+        return timeFormatter.string(from: date)
+    }
+}
+public extension String {
+    /// 在指定宽度和字体下计算文本所需高度
+    func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintSize = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        
+        let boundingBox = self.boundingRect(
+            with: constraintSize,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: attributes,
+            context: nil
+        )
+        return ceil(boundingBox.height)
     }
     
-    //
+    /// 在指定高度和字体下计算文本所需宽度（注意：大部分情况下用得少）
+    func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintSize = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        
+        let boundingBox = self.boundingRect(
+            with: constraintSize,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: attributes,
+            context: nil
+        )
+        return ceil(boundingBox.width)
+    }
+    func size(constrainedTo width: CGFloat, attributes: [NSAttributedString.Key: Any]?) -> CGSize {
+        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        
+        let boundingBox = self.boundingRect(with: constraintRect, options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: attributes, context: nil)
+        
+        return boundingBox.size
+    }
+}
+public extension String {
+    var jsonToDictionary: [String: Any]? {
+        guard let data = self.data(using: .utf8),
+              let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return nil
+        }
+        return dict
+    }
+    
+    var jsonToArray: [Any]? {
+        guard let data = self.data(using: .utf8),
+              let array = try? JSONSerialization.jsonObject(with: data) as? [Any] else {
+            return nil
+        }
+        return array
+    }
+}
+public extension String {
     func subStrToIndex(index: Int) -> String {
         return (self as NSString).substring(to: index)
     }
@@ -229,147 +202,58 @@ public extension String{
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         do {
-            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return try NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ],
+                documentAttributes: nil
+            )
         } catch {
             return NSAttributedString()
         }
     }
     
-    var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
-    }
-    
-    // MARK: - Timestamp related
-    func formatTimeWithRex(rex: String) -> String {
-        let string = NSString.init(string: self)
-        let timeSta: TimeInterval = string.doubleValue
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = rex
-        let date = Date.init(timeIntervalSince1970: timeSta)
-        return timeFormatter.string(from: date)
-    }
-    
-    //
-    func getCurrentTime() -> String {
-        let date = Date()
-        let timeFormatter = DateFormatter()
-        //        timeFormatter.dateFormat = "yyyy-MM-dd 'at' HH:mm:ss.SSS"
-        timeFormatter.dateFormat = self
-        let strNowTime = timeFormatter.string(from: date) as String
-        return strNowTime
-    }
-    
-    /**
-     Calculate text height based on font and width
-     
-     - parameter width
-     - parameter font
-     
-     - returns
-     */
-    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        
-        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        
-        return boundingBox.height
-    }
-    
-    func heightWithConstrainedWidth(width: CGFloat, attr: [NSAttributedString.Key: Any]?) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        
-        let boundingBox = self.boundingRect(with: constraintRect, options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: attr, context: nil)
-        
-        return boundingBox.height
-    }
-    
-    /**
-     Calculate text width based on font and width
-     
-     - parameter width
-     - parameter font
-     
-     - returns
-     */
-    func widthWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        
-        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        
-        return boundingBox.width
-    }
-    
-    func widthWithConstrainedWidth(width: CGFloat, attr: [NSAttributedString.Key: Any]?) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        
-        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attr, context: nil)
-        
-        return boundingBox.width
-    }
-    
-    /**
-     Convert JSON string to DIC
-     */
-    func getDictionaryFromJSONString() -> NSDictionary{
-        
-        let jsonData:Data = self.data(using: .utf8)!
-        
-        let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-        if dict != nil {
-            return dict as! NSDictionary
+    func toBase64() -> String{
+        if let data = self.data(using: .utf8) {
+            let base64String = data.base64EncodedString()
+            return base64String
+        } else {
+            return ""
         }
-        return NSDictionary()
-        
-        
     }
     
-    /**
-     Convert JSON strings into arrays
-     */
-    func getArrayFromJSONString() -> NSArray{
-        
-        let jsonData:Data = self.data(using: .utf8)!
-        
-        let array = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-        if array != nil {
-            return array as! NSArray
+    func fromBase64() -> String{
+        if let data = Data(base64Encoded: self) {
+            if let decodedString = String(data: data, encoding: .utf8) {
+                return decodedString
+            } else {
+                return ""
+            }
+        } else {
+            return ""
         }
-        return array as! NSArray
-        
     }
-    
-    // Calculate the straight-line distance between two latitude and longitude points
-    func getDistanceBetweenFromCoor(coor1: CLLocationCoordinate2D, coor2: CLLocationCoordinate2D) -> Double{
-        let curLocation = CLLocation.init(latitude: coor1.latitude, longitude: coor1.longitude)
-        let otherLocation = CLLocation.init(latitude: coor2.latitude, longitude: coor2.longitude)
-        return curLocation.distance(from: otherLocation)
-    }
-    
-    // Asymmetric encryption algorithm
-    func hmac(algorithm: CryptoAlgorithm, key: String) -> String {
-        let str = self.cString(using: String.Encoding.utf8)
-        let strLen = Int(self.lengthOfBytes(using: String.Encoding.utf8))
-        let digestLen = algorithm.digestLength
-        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
-        let keyStr = key.cString(using: String.Encoding.utf8)
-        let keyLen = Int(key.lengthOfBytes(using: String.Encoding.utf8))
-        
-        CCHmac(algorithm.HMACAlgorithm, keyStr!, keyLen, str!, strLen, result)
-        
-        let digest = stringFromResult(result: result, length: digestLen)
-        
-        result.deallocate()
-        return digest
-    }
-    
-    private func stringFromResult(result: UnsafeMutablePointer<CUnsignedChar>, length: Int) -> String {
-        let hash = NSMutableString()
-        for i in 0..<length {
-            hash.appendFormat("%02x", result[i])
+}
+public extension String {
+    func callPhoneNumber() {
+        guard let url = URL(string: "tel://\(self)") else { return }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
         }
-        return String(hash).lowercased()
     }
-    
+}
+public extension String {
+    static func distance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
+        let loc1 = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let loc2 = CLLocation(latitude: to.latitude, longitude: to.longitude)
+        return loc1.distance(from: loc2)
+    }
+}
+public extension String {
     // Asymmetric encryption algorithm related
     enum CryptoAlgorithm {
         case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
@@ -401,7 +285,44 @@ public extension String{
         }
     }
     
-    // AESSBC encryption
+    var md5: String {
+        let str = self.cString(using: String.Encoding.utf8)
+        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
+        CC_MD5(str!, strLen, result)
+        let hash = NSMutableString()
+        for i in 0 ..< digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        result.deallocate()
+        return String(format: hash as String)
+    }
+    
+    func hmac(algorithm: CryptoAlgorithm, key: String) -> String {
+        let str = self.cString(using: String.Encoding.utf8)
+        let strLen = Int(self.lengthOfBytes(using: String.Encoding.utf8))
+        let digestLen = algorithm.digestLength
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
+        let keyStr = key.cString(using: String.Encoding.utf8)
+        let keyLen = Int(key.lengthOfBytes(using: String.Encoding.utf8))
+        
+        CCHmac(algorithm.HMACAlgorithm, keyStr!, keyLen, str!, strLen, result)
+        
+        let digest = stringFromResult(result: result, length: digestLen)
+        
+        result.deallocate()
+        return digest
+    }
+    
+    private func stringFromResult(result: UnsafeMutablePointer<CUnsignedChar>, length: Int) -> String {
+        let hash = NSMutableString()
+        for i in 0..<length {
+            hash.appendFormat("%02x", result[i])
+        }
+        return String(hash).lowercased()
+    }
+    
     func aesCBCEncrypt(key: Data, iv: Data) -> Data? {
         let data = self.data(using: .utf8)
         let bufferSize = data!.count + kCCBlockSizeAES128
@@ -436,27 +357,39 @@ public extension String{
         }
     }
     
-    //
-    func convertStringToBase64String() -> String{
-        if let data = self.data(using: .utf8) {
-            let base64String = data.base64EncodedString()
-            return base64String
-        } else {
-            return ""
-        }
-    }
-    
-    func convertBase64StringToString() -> String{
-        if let data = Data(base64Encoded: self) {
-            if let decodedString = String(data: data, encoding: .utf8) {
-                return decodedString
-            } else {
-                return ""
+    func aesCBCDecrypt(key: Data, iv: Data) -> String? {
+        guard let data = Data(base64Encoded: self) else { return nil }
+        
+        let bufferSize = data.count + kCCBlockSizeAES128
+        var buffer = [UInt8](repeating: 0, count: bufferSize)
+        
+        var numBytesDecrypted = 0
+        
+        let cryptStatus = key.withUnsafeBytes { keyBytes in
+            iv.withUnsafeBytes { ivBytes in
+                data.withUnsafeBytes { dataBytes in
+                    CCCrypt(
+                        CCOperation(kCCDecrypt),
+                        CCAlgorithm(kCCAlgorithmAES128),
+                        CCOptions(kCCOptionPKCS7Padding),
+                        keyBytes.baseAddress,
+                        key.count,
+                        ivBytes.baseAddress,
+                        dataBytes.baseAddress,
+                        data.count,
+                        &buffer,
+                        bufferSize,
+                        &numBytesDecrypted
+                    )
+                }
             }
+        }
+        
+        if cryptStatus == kCCSuccess {
+            let decryptedData = Data(buffer[..<numBytesDecrypted])
+            return String(data: decryptedData, encoding: .utf8)
         } else {
-            return ""
+            return nil
         }
     }
 }
-
-

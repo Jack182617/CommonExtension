@@ -12,12 +12,14 @@ import CommonExtension
 class ViewController: UIViewController {
 
     lazy var bottomView = UIView.init(backgroundColor: .red)
+    
+    lazy var commonLb = UILabel.init(font: .pfRegular(15), color: .orange, alignment: .center, titleString: "测试label")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        
+        self.initView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,5 +28,9 @@ class ViewController: UIViewController {
     }
 
 
+    func initView(){
+        commonLb.frame = CGRect.init(x: 200, y: 200, width: 100, height: 50)
+        view.addSubview(commonLb)
+    }
 }
 
