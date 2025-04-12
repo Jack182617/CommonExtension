@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UIApplication {
+public extension UIApplication {
     var rootWindow: UIWindow? {
         if #available(iOS 13.0, *) {
             return UIApplication.shared.connectedScenes
