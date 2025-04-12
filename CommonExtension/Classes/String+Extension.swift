@@ -142,7 +142,7 @@ public extension String {
     }
 }
 public extension String {
-    /// 在指定宽度和字体下计算文本所需高度
+    ///
     func height(forWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         let attributes: [NSAttributedString.Key: Any] = [.font: font]
@@ -156,7 +156,7 @@ public extension String {
         return ceil(boundingBox.height)
     }
     
-    /// 在指定高度和字体下计算文本所需宽度（注意：大部分情况下用得少）
+    ///
     func width(forHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintSize = CGSize(width: .greatestFiniteMagnitude, height: height)
         let attributes: [NSAttributedString.Key: Any] = [.font: font]

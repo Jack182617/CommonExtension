@@ -36,7 +36,7 @@ public extension UILabel {
         }
     }
     
-    /// 设置富文本（带字体、颜色、行距、对齐方式）
+    ///
     func setAttributedText(_ text: String, font: UIFont, color: UIColor, lineSpacing: CGFloat = 0, alignment: NSTextAlignment = .left) {
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: font,
@@ -52,15 +52,15 @@ public extension UILabel {
         self.attributedText = attributedString
     }
     
-    /// 设置富文本，支持 SF Symbols 图标插入
+    /// Set rich text, support SF Symbols icon insertion
     /// - Parameters:
-    ///   - textBefore: 图标前的文本
-    ///   - sfSymbolName: SF Symbols 的名称
-    ///   - textAfter: 图标后的文本
-    ///   - font: 文字字体
-    ///   - color: 文字颜色
-    ///   - symbolSize: SF Symbols 的大小（默认 16x16）
-    ///   - offsetY: 图标的 Y 轴偏移量（默认 -2，适配文字基线）
+    /// - textBefore: text before the icon
+    /// - sfSymbolName: name of SF Symbols
+    /// - textAfter: text after the icon
+    /// - font: text font
+    /// - color: text color
+    /// - symbolSize: size of SF Symbols (default 16x16)
+    /// - offsetY: Y-axis offset of the icon (default -2, adapt to text baseline)
     @available(iOS 13.0, *)
     func setAttributedTextWithSymbol(textBefore: String, sfSymbolName: String, textAfter: String, font: UIFont, color: UIColor, symbolSize: CGSize = CGSize(width: 16, height: 16), offsetY: CGFloat = -2, lineSpacing: CGFloat = 0, alignment: NSTextAlignment = .left) {
         
@@ -69,18 +69,18 @@ public extension UILabel {
             .foregroundColor: color
         ])
         
-        // 创建 SF Symbols 图片并转换为 NSTextAttachment
+        // Create SF Symbols images and convert them to NSTextAttachment
         let symbolAttachment = NSTextAttachment()
         if let image = UIImage(systemName: sfSymbolName)?.withTintColor(color, renderingMode: .alwaysOriginal) {
             symbolAttachment.image = image
             symbolAttachment.bounds = CGRect(x: 0, y: offsetY, width: symbolSize.width, height: symbolSize.height)
         }
         
-        // 把 NSTextAttachment 转换为 NSAttributedString 并拼接
+        // Convert NSTextAttachment to NSAttributedString and concatenate
         let symbolString = NSAttributedString(attachment: symbolAttachment)
         attributedString.append(symbolString)
         
-        // 添加后续文本
+        //
         attributedString.append(NSAttributedString(string: " " + textAfter, attributes: [
             .font: font,
             .foregroundColor: color

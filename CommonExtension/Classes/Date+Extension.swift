@@ -37,12 +37,12 @@ public extension Date {
         return "\(day)"
     }
     
-    /// 当前时间 - self 的时间差（秒）
+    /// Current time - time difference of self (seconds)
     func diffTime() -> TimeInterval {
         return Date().timeIntervalSince(self)
     }
     
-    /// 格式化日期为字符串
+    ///
     func dateString(with format: String = "yyyy-MM-dd 'at' HH:mm:ss.SSS") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format

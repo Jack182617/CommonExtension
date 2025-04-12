@@ -2,7 +2,7 @@
 //  UIApplication+Extension.swift
 //  CommonExtension
 //
-//  Created by 袁杰 on 2025/4/6.
+//  Created by Jack on 2025/4/6.
 //
 
 import Foundation

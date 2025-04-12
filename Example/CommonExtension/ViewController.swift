@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     lazy var bottomView = UIView.init(backgroundColor: .red)
     
-    lazy var commonLb = UILabel.init(font: .pfRegular(15), color: .orange, alignment: .center, titleString: "测试label")
+    lazy var commonLb = UILabel.init(font: .pfRegular(15), color: .orange, alignment: .center, titleString: "label")
 
     override func viewDidLoad() {
         super.viewDidLoad()
